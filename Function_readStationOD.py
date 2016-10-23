@@ -9,7 +9,6 @@ class ReadStationOD :
 	@classmethod
 	def createNew(cls,num_station,num_peroid,floder_path,Day_List):
 		obj = cls()		
-		print('constructior')		
 		obj.NUM_STATION  = num_station
 		obj.NUM_PEROID   = num_peroid
 		obj.FLODER_PATH  = floder_path
@@ -44,9 +43,7 @@ class ReadStationOD :
 		obj = cls()
 		obj.Station_OD_Matrix = List
 		return obj		
-		
-	def printit(self):
-		print(self.Station_OD_Matrix)
+
 	
 	def printDayRecord(self,day_list_index):
 		for Peroid in range(0,self.NUM_PEROID):
@@ -61,10 +58,24 @@ class ReadStationOD :
 						
 	def mergeDayRecord (self,merge_day):
 		len_merged_matrix = int (self.LEN_DAYLIST / merge_day)		
-	'''
 		#create merged Matrix 		
 		Merged_OD_Record = list()
-		for day in range(len):
-	'''
-				
+		for Day in range(0,len_merged_matrix):
+			Day_List = list()
+			for Peroid in range(0,self.NUM_PEROID):
+				Peroid_List = list()
+				for D in range(0,self.NUM_STATION):
+					d_record = 0
+					Peroid_List.append(d_record)
+				Day_List.append(Peroid_List)
+			Merged_OD_Record.append(Day_List)
+		
+		for Day in range(0,self.LEN_DAYLIST,merge_day):
+			for index in range(0,merge_day):
+				for Peroid in range(0,self.NUM_PEROID):
+					for D in range(0,self.NUM_STATION):
+						Merged_OD_Record[int(Day/merge_day)][Peroid][D] += self.Station_OD_Matrix[Day+index][Peroid][D]
+		
+		return Merged_OD_Record
+		
 				

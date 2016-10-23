@@ -1,0 +1,19 @@
+1.Catagorize_ODRecord_byStation.py
+	-> 取sacn RegularFrom 記錄下 每天的OD Record矩陣
+	-> OutFile :OD_Record_byStation /站號/日期.txt  (只掃正常天)
+	-> Data format each day : [212][48] (212D　48peroid)
+
+2.Analysis_Top10Record.py
+	-> import Function_readStationOD.py 
+		->以 ReadStationOD class 來將 OD_Record_byStation 還原成矩陣
+		->提供mergeDayRecord 將固定天數的紀錄合併成一組資料
+		->(嘗試使用@classmethod來模擬多參數型態的建構子)
+	-> import import Function_ODAnalysis.py
+		-> 以 ODAnalysis 來進行ODRecord的分析
+		-> Top10 函數用於紀錄 前十名的station 
+			->import Class_Station.py
+				以 Station class 來記錄該站的站號、OD、ODR
+				站號以list儲存以利相同OD的Station記錄成同rank
+
+	->呼叫 RSOD 和 ODA 來 讀取資料並記錄Top10station的站號,OD,ODR,
+	->利用 ODA 的 printTop10 分別輸出 站號資料 ,OD資料,ODR資料
