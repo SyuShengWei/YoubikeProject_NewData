@@ -30,24 +30,31 @@ for floder in os.listdir('C:/Users/SyuShengWei/Desktop/AnalysisiStationOD/Analys
 		Frequently_List.append(Period_List)
 		#if Period_List != []:
 			#print("period {}: station {}frequency station".format(str(Period).rjust(2,' '),Period_List))
-	
 
-	if os.path.isfile('Top10Frequence_'+str(frequence_bound_rate)+'.txt'):
-		os.remove('Top10Frequence_'+str(frequence_bound_rate)+'.txt')
+	#outFile to same floder
+	outfile_path = 'C:/Users/SyuShengWei/Desktop/AnalysisiStationOD/FrequenceStation088'
+	if not os.path.exists(outfile_path):
+		os.makedirs(outfile_path)
+	os.chdir(outfile_path)
+				
+
+	if os.path.isfile(floder+'Top10Frequence_'+str(frequence_bound_rate)+'.txt'):
+		os.remove(floder+'Top10Frequence_'+str(frequence_bound_rate)+'.txt')
+
 	
 	
-	outFile = open('Top10Frequence_'+str(frequence_bound_rate)+'.txt','a')
+	outFile = open(floder+'Top10Frequence_'+str(frequence_bound_rate)+'.txt','a')
 	for Period in range(0,NUM_PERIOD):
 		if Frequently_List[Period] != [] :
 			for station in range(0,len(Frequently_List[Period])):
 				outFile.write(Frequently_List[Period][station])
 				if station != len(Frequently_List[Period]) -1 :
 					outFile.write(',')
-		if Period != NUM_PERIOD -1 :
+		if Period != NUM_PERIOD  :
 			outFile.write('\n')
 	outFile.close()
 	
-	break
+
 	
 
 

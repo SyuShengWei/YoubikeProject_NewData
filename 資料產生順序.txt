@@ -1,0 +1,30 @@
+prepare :
+1.OpenData /20XXOOXX-XX(DIGES).csv	:from YouBike System  
+	# need to be utf8 -> python use codecs.open (filename,'r','utf-8') to read
+
+
+create:
+1.DayList.txt				:by Output_DayList.py
+	//20XX-XX-XX data from 2014 to 2015 
+	
+	->to crawle the weather from Central Weather Bureau
+
+2.OpenData_Weather / 20XX-XX-XX.csv	:by Crawler_Weather.py	
+	//the Open Data from CWB's wedsite
+
+	->to WeatherData
+
+3.WeatherData / 20XX-XX-XX.csv		:by Catagorize_Weather.py
+	//Catagorized Weather Data
+
+	->to create RegularForm
+
+4.Station_Num_222.txt   		:by Output_StataionInfo.py
+	//Station data with Num,lat,long,capacity
+
+	->to create RegularForm
+
+5.Clean_Data / Youbike Form		: by Catagorize_CleanData_103.py & Catagorize_CleanData_104.py
+	//Clean the Useless data 
+
+	-> to create RegularForm

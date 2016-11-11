@@ -1,3 +1,6 @@
+
+
+
 class StationFrequence :
 	
 	def __init__ (self,Station_NUM,frequence = 1):
@@ -13,7 +16,6 @@ class StationFrequence :
 	def getFre(self):
 		return self.station_frequence
 	
-
 def scanTop10Frequence(Top10_Record,num_period,num_recordday):
 	#create a list to store the result data
 	Frequence_Record = [[]for Period in range(0,num_period)]
